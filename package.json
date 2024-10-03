@@ -6,13 +6,15 @@
     "dev": "next dev",
     "build": "prisma generate && prisma migrate dev && prisma db seed && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db-seed": "tsc prisma/seed.ts && node prisma/seed.js && del prisma/seed.js"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
   },
   "dependencies": {
     "@prisma/client": "^5.20.0",
+    "dotenv": "^16.4.5",
     "next": "14.2.13",
     "prisma": "^5.20.0",
     "react": "^18",
