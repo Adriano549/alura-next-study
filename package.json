@@ -9,6 +9,7 @@
     "lint": "next lint",
     "db-seed": "tsc prisma/seed.ts && node prisma/seed.js && del prisma/seed.js"
   },
+  
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
   },
