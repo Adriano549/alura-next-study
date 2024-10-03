@@ -7,7 +7,7 @@
     "build": "prisma generate && prisma migrate dev && prisma db seed && next build",
     "start": "next start",
     "lint": "next lint",
-    "db-seed": "tsc prisma/seed.ts && node prisma/seed.js && del prisma/seed.js"
+    "db-seed": "tsc prisma/seed.ts"
   },
   
   "prisma": {
