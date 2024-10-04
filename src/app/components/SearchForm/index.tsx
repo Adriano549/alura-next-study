@@ -1,6 +1,6 @@
 
 import { Button } from '../Button'
-import styles from './searchform.module.css'
+import styles from './searchForm.module.css'
 
 export const SearchForm = () => {
     return (
