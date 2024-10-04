@@ -13,7 +13,22 @@ export interface Post {
   slug: string;
   body: string;
   markdown: string;
+  author: Author;
+  likes: number;
+  comments?: Comment[];
+}
+
+export interface PostWithTimestamps extends Post {
   createdAt: Date;
   updatedAt: Date;
-  author: Author;
 }
+
+interface Comment {
+  id: number;
+  authorId: number;
+  text: string;
+  postId: number;
+  parentId: number | null;
+}
+
+

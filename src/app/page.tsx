@@ -44,9 +44,10 @@ async function getAllPosts(page: number, searchTerm?: string | null): Promise<Ge
       take: perPage,
       skip,
       where,
-      orderBy: { createdAt: 'asc' },
+      orderBy: { id: 'desc' },
       include: {
-        author: true, // Incluir os dados do autor na query
+        author: true,
+        comments: true 
       },
     })
 
