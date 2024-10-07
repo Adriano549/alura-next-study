@@ -1,17 +1,15 @@
 'use client'
 import { forwardRef, useImperativeHandle, useRef } from "react"
 import styles from './modal.module.css'
+import { ChildrenProps } from "@/app/types/childrenType";
 
 export interface ModalHandles {
     openModal: () => void;
     closeModal: () => void;
 }
 
-interface ForwardRefProps{
-    children: React.ReactNode;
-}
 
-export const Modal = forwardRef<ModalHandles,ForwardRefProps>(({children}, ref) =>{
+export const Modal = forwardRef<ModalHandles,ChildrenProps>(({children}, ref) =>{
 
     const dialogRef = useRef<HTMLDialogElement>(null)
 
@@ -31,7 +29,7 @@ export const Modal = forwardRef<ModalHandles,ForwardRefProps>(({children}, ref) 
     return (
         <dialog className={styles.dialog} ref={dialogRef}>
             <header className={styles.header}>
-                <button onClick={() => closeModal()}>
+                <button onClick={closeModal}>
                     x
                 </button>
             </header>

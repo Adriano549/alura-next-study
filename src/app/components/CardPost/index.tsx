@@ -3,7 +3,7 @@ import { Avatar } from "../Avatar"
 import { Post } from "@/app/types/postType";
 import styles from "./cardPost.module.css"
 import Link from "next/link";
-import { incrementThumsUp } from "@/actions";
+import { incrementThumsUp, postComment } from "@/actions";
 import { ThumbsUpButton } from "./ThumbsUpButton";
 import { ModalComment } from "../ModalComment";
 
@@ -15,6 +15,7 @@ interface CardPostProps {
 export const Cardpost = ({ post, highlight }: CardPostProps) => {
 
     const submitThumsUp = incrementThumsUp.bind(null, post)
+    const submitComment = postComment.bind(null, post)
 
     return (
         <article className={styles.card} style={{ width: highlight ? 993 : 486 }}>
@@ -37,7 +38,7 @@ export const Cardpost = ({ post, highlight }: CardPostProps) => {
                         </p> 
                     </form>
                     <div>
-                        <ModalComment/>
+                        <ModalComment action={submitComment}/>
                         <p>
                             {post.comments?.length }
                         </p>

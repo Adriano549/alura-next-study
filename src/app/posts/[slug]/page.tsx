@@ -5,6 +5,7 @@ import html from "remark-html"
 import styles from "./page.module.css"
 import db from "../../../../prisma/db";
 import { redirect } from "next/navigation";
+import { CommentList } from "@/app/components/CommentList";
 
 
 async function getPostBySlug(slug: string) {
@@ -15,7 +16,19 @@ async function getPostBySlug(slug: string) {
             },
             include: {
                 author: true,
-                comments: true
+                comments: {
+                    include:{
+                        author:true,
+                        children:{
+                            include: {
+                                author:true
+                            }
+                        }
+                    },
+                    where:{
+                        parentId:null
+                    }
+                }
             }
         })
         if (!post) {
@@ -44,6 +57,8 @@ const PagePost = async ({ params }: { params: Params }) => {
 
     const post = await getPostBySlug(params.slug)
 
+    
+
     return (
         <div>
             <Cardpost post={post} highlight={true} />
@@ -51,6 +66,12 @@ const PagePost = async ({ params }: { params: Params }) => {
             <div className={styles.code}>
                 <div dangerouslySetInnerHTML={{ __html: post.markdown }} />
             </div>
+            <div>
+                <h2>
+                    Comentários
+                </h2>
+            </div>
+            <CommentList comments={post.comments}/>
         </div>
     )
 }

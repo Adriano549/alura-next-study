@@ -14,7 +14,7 @@ interface WhereClause {
 
 // Definindo o tipo para o retorno da função
 interface GetAllPostsResponse {
-  posts: Post[]// Substitua 'Post' pelo tipo correspondente ao seu modelo de post
+  posts: Post[]
   prev: number | null;
   next: number | null;
 }
@@ -47,7 +47,7 @@ async function getAllPosts(page: number, searchTerm?: string | null): Promise<Ge
       orderBy: { id: 'desc' },
       include: {
         author: true,
-        comments: true 
+        comments: true
       },
     })
 

@@ -23,12 +23,16 @@ export interface PostWithTimestamps extends Post {
   updatedAt: Date;
 }
 
-interface Comment {
+export interface Comment {
   id: number;
-  authorId: number;
   text: string;
-  postId: number;
+  createdAt: Date;
+  updatedAt: Date;
+  author: Author;
+  post: Post;
   parentId: number | null;
+  children?: Comment[];
 }
+
 
 
